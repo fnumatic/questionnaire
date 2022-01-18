@@ -1,0 +1,41 @@
+{
+	"meta" : {
+		"title" : "Übungsfragen für den BSI-Grundschutz Praktiker",
+		"author" : "Jean-Christoph von Oertzen",
+		"licence" : "CC BY 3.0 DE <https://creativecommons.org/licenses/by/3.0/de/>",
+		"homepage" : "https://jeanchristophvonoertzen.com",
+		"contributors" : []
+	},
+	"quiz" : {
+		"Einstieg" : {
+			"7":{
+				"question": "Welche Informationen beinhaltet die IT-Grundschutz-Methodik (BSI-Standard 200-2)?",
+				"answers":{
+					"A": "besonders schutzwürdigen Komponenten",
+					"B": "methodische Hilfestellungen zur schrittweisen Einführung eines ISMS",
+					"C":"wie die Informationssicherheit im laufenden Betrieb aufrechterhalten und kontinuierlich verbessert werden kann",
+					"D":"effiziente Verfahren, um die allgemeinen Anforderungen des BSI-Standards 200-1 zu konkretisieren"
+				},
+				"right":["B","C","D"]
+			}
+			
+		},
+		"Sicherheitsmanagement" : {
+			"7":{
+				"question":"Welche Aussagen zur Norm ISO/IEC 27002 sind richtig?",
+				"answers":{
+					"A": "Sie gibt Rahmenempfehlungen zum Risikomanagement für Informationssicherheit",
+					"B": "spezifiziert Anforderungen an die Akkreditierung von Zertifizierungsstellen für ISMS",
+					"C": "Beschreibung von Sicherheitsmaßnahmen",
+					"D": "Die Umsetzung der Sicherheitsempfehlungen ist eine von vielen Möglichkeiten, die Anforderungen der ISO-Norm 27001 zu erfüllen"
+				},
+				"right":["C","D"]
+			}
+			
+		}
+		
+		
+		
+		
+	}
+}

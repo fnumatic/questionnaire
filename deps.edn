@@ -22,6 +22,9 @@
            metosin/reitit-schema     {:mvn/version "0.5.15"},
            metosin/reitit-frontend   {:mvn/version "0.5.15"},
            metosin/reitit            {:mvn/version "0.5.15"},
-           re-frame/re-frame         {:mvn/version "1.2.0"},
+           re-frame/re-frame         {:mvn/version "1.3.0-rc2"},
+           cljs-ajax/cljs-ajax {:mvn/version "0.8.4"},
+           philoskim/debux {:mvn/version "0.8.1"}
+           day8.re-frame/http-fx {:mvn/version "0.2.4"},
            thheller/shadow-cljs      {:mvn/version "2.16.12"}},
  :paths   ["src" "resources"  "test/cljs"]}

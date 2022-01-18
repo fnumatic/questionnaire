@@ -1,7 +1,7 @@
 (ns ^:figwheel-hooks cljs-reframe-template.core
   (:require
    [reagent.dom :refer [render]]
-   [re-frame.core :as re-frame]
+   [re-frame.core :as rf]
    [cljs-reframe-template.use-cases.core-cases :as ccases]
    [cljs-reframe-template.routes :as routes]
    [cljs-reframe-template.views.home :as views]
@@ -17,7 +17,7 @@
 
 (defn mount-root []
   (println "mount")
-  (re-frame/clear-subscription-cache!)
+  (rf/clear-subscription-cache!)
   (styl/inject-trace-styles js/document)
   (render [views/main-panel]
           (.getElementById js/document "app")))
@@ -27,8 +27,8 @@
 
 (defn ^:export init []
   (println "init again..")
-  (re-frame/dispatch-sync [::ccases/initialize-db])
+  (rf/dispatch-sync [::ccases/initialize-db])
   (dev-setup)
   (routes/app-routes)
-
+  (rf/dispatch [::ccases/fetchdemo!])
   (mount-root))

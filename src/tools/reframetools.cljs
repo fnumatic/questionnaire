@@ -7,3 +7,9 @@
 (defn gdb
   [path]
   (fn [db _] (get-in db path)))
+
+(defn target-value [evt]
+  (-> evt .-target .-value))
+
+(defn target-checked [evt]
+  (-> evt .-target .-checked))

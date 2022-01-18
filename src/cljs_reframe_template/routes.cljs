@@ -5,9 +5,12 @@
     [reitit.frontend.history :as rtfh]
     [reitit.frontend.easy :as rtfe]
     [reitit.coercion.schema :as rsc]
-    [cljs-reframe-template.use-cases.core-cases :as ccases]
+    [tools.reframetools :refer [sdb gdb]]
     [cljs-reframe-template.views.home :as home]
-    [cljs-reframe-template.views.compo :as compo]))
+    [cljs-reframe-template.views.compo :as compo]
+   [cljs-reframe-template.views.quiz :as compo2]
+   [cljs-reframe-template.views.stats :as stats]
+   ))
 
 ;;https://clojure.org/guides/weird_characters#__code_code_var_quote
 (def routes
@@ -16,19 +19,47 @@
        [""
         {:name :routes/frontpage
          :view #'home/main}]
-       ["component"
-        {:name :routes/component
-         :view #'compo/main}]]
+       
+       ["quiz"
+        {:name :routes/quiz
+         :view #'compo2/main}]
+       ["stats"
+        {:name :routes/stats
+         :view #'stats/main}]]
 
       {:data {:coercion rsc/coercion}}))
 
-
+(defn on-navigate [new-match]
+  (when new-match
+    (rf/dispatch [:routes/navigated new-match])))
 
 (defn app-routes []
 
   (rtfe/start! routes
-               (fn [m] (rf/dispatch [::ccases/set-active-panel m]))
+               on-navigate
                {:use-fragment true}))
 
+(rf/reg-sub
+ :routes/current-route
+ :-> :current-route)
 
+;;; Events
+
+(rf/reg-event-db
+ :routes/navigated
+ (sdb [:current-route] ))
+
+(rf/reg-event-fx
+ :routes/navigate
+ (fn [_cofx [_ & route]]
+   (println {:navigate! route})
+   {:routes/navigate! route}))
+
+
+
+
+(rf/reg-fx
+ :routes/navigate!
+ (fn [route]
+   (apply rtfe/push-state route)))
 
