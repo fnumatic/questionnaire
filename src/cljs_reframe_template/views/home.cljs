@@ -3,20 +3,27 @@
     [re-frame.core :as rf]
     [cljs-reframe-template.use-cases.core-cases :as ccases]
     [tools.viewtools :as vt]
-    [cljs.pprint :as pp]
-    ))
+    [cljs.pprint :as pp]))
+    
 
-(defn quizz-meta [{:keys [title author] :as meta}]
-  [:div.flex.flex-col.space-y-2.bg-gray-200.p-2
-   [:div title]
-   [:div author]])
+(defn quizz-meta [{:keys [title author licence homepage contributors] :as meta}]
+  (println :quiz-meta meta)
+  [:div.flex.flex-col.space-y-2.bg-gray-200.p-8.text-xs.items-center.rounded.shadow-md
+   {:class ["w-2/3"]}
+   [:h1.text-center.pb-5.text-2xl.font-semibold.text-gray-600 title]
+   [:div author]
+   [:div licence]
+   [:a.hover:text-blue-800
+    {:href homepage} homepage]
+   ])
+   
 (defn main []
-  (let [meta (rf/subscribe [::ccases/meta])
-        ]
+  (let [meta (rf/subscribe [::ccases/meta])]
+        
    [:div
-    {:class ["min-h-[220px]" "min-w-[300px]" :bg-blue-200 :m-4 :p-2 "rounded-[5px]"]}
-    [:div.flex.flex-col.space-y-3.items-center.justify-end
-    ;;  [quizz-meta @meta]
+    {:class ["h-full" "min-w-[300px]" :bg-blue-200  :p-4  "rounded-[5px]"]}
+    [:div.flex.flex-col.space-y-4.items-center.justify-end.pt-8
+      [quizz-meta @meta]
     ;;  [:button.h-20.w-40.bg-green-700.rounded-md.text-4xl.font-semibold.text-gray-700.border.shadow-md
     ;;   {:on-click #(rf/dispatch [::ccases/start])}
     ;;   "Load"]
@@ -41,11 +48,11 @@
   (when-let [route-data (:data route)]
     (let [view (:view route-data)]
       [:<>
-       [view]
-       ])))
+       [view]])))
+       
 
 (defn main-panel []
   (let [active-route (rf/subscribe [:routes/current-route])]
-    [:div
+    [:div.w-screen.h-screen.p-4.bg-gray-50
      ;[vt/navigation toolbar-items]
      [show-panel @active-route]]))

@@ -99,7 +99,7 @@
      :answers a_r}))
 
 (rf/reg-sub ::name :-> :name)
-(rf/reg-sub ::meta (gdb [:quiz "meta"]))
+(rf/reg-sub ::meta (comp keywordize-keys (gdb [:quiz "meta"])))
 (rf/reg-sub ::quiz (gdb [:quiz "quiz"]))
 (rf/reg-sub ::paths :-> :paths)
 (rf/reg-sub ::current-quest-path

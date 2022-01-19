@@ -38,7 +38,7 @@
         statsdata (rf/subscribe  [::ccases/stats])]
     (println :main @game-state)
    [:div
-    {:class ["min-h-[220px]" "min-w-[300px]" :bg-gray-200 :m-4 :p-2 "rounded-[5px]"]}
+    {:class ["h-full" "min-w-[300px]" :bg-gray-200  :p-2 "rounded-[5px]"]}
     [:div.flex.flex-col.space-y-3
      [stats @statsdata]]
      [:div.flex.justify-center

@@ -11,7 +11,7 @@
 
 (defn quest-line [st clck id q]
   (let [selct (some? ((doall st) id))]
-   [:div.flex.space-x-4.items-center.border.h-20.bg-gray-50.hover:shadow-lg
+   [:div.flex.space-x-4.items-center.border.h-20.bg-gray-50.hover:shadow-lg.text-xs.sm:text-base
     {:on-click #(clck id)}
     [:div
      {:class (concat [:flex :justify-center :items-center :w-20 :h-full 
@@ -27,7 +27,7 @@
              [cat qid] path]
    [:div.flex.flex-col.space-y-2.p-2
     [:h2.text-lg.font-semibold.text-gray-700 cat]
-    [:div.pt-2.flex.space-x-2
+    [:div.pt-2.flex.space-x-2.text-xs.sm:text-base
      [:div.flex-none qid]
      [:div.h-full question]]
     (doall
@@ -49,12 +49,12 @@
     [:h2.text-4xl.font-semibold score]]])
 
 (defn main []
-  (let [meta (rf/subscribe [::ccases/meta])
+  (let [
         current-quest (rf/subscribe [::ccases/current-quest])
         hud-stats (rf/subscribe [::ccases/hud-stats])
         ]
    [:div
-    {:class ["min-h-[220px]" "min-w-[300px]" :bg-green-50 :m-4 :p-2 "rounded-[5px]"]}
+    {:class ["h-full" "min-w-[300px]" :bg-green-50  :p-2 "rounded-[5px]"]}
     [:div.flex.flex-col.space-y-3
      [quizz-hud @hud-stats]
      [quizz-quest @current-quest]
