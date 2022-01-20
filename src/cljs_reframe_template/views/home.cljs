@@ -7,7 +7,6 @@
     
 
 (defn quizz-meta [{:keys [title author licence homepage contributors] :as meta}]
-  (println :quiz-meta meta)
   [:div.flex.flex-col.space-y-2.bg-gray-200.p-8.text-xs.items-center.rounded.shadow-md
    {:class ["w-2/3"]}
    [:h1.text-center.pb-5.text-2xl.font-semibold.text-gray-600 title]
@@ -19,7 +18,6 @@
    
 (defn main []
   (let [meta (rf/subscribe [::ccases/meta])]
-        
    [:div
     {:class ["h-full" "min-w-[300px]" :bg-blue-200  :p-4  "rounded-[5px]"]}
     [:div.flex.flex-col.space-y-4.items-center.justify-end.pt-8
