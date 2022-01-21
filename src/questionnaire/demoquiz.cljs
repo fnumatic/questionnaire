@@ -1,4 +1,4 @@
-(ns cljs-reframe-template.demoquiz)
+(ns questionnaire.demoquiz)
 
 (def data
   {

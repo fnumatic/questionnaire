@@ -1,7 +1,7 @@
-(ns cljs-reframe-template.use-cases.core-cases
+(ns questionnaire.use-cases.core-cases
   (:require
    [re-frame.core :as rf]
-   [cljs-reframe-template.db :as db]
+   [questionnaire.db :as db]
    [clojure.walk :refer [keywordize-keys]]
    [debux.cs.core :as d :refer-macros [dbg dbgn break]]
    [ajax.json :refer [json-response-format]]

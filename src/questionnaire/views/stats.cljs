@@ -1,8 +1,7 @@
-(ns cljs-reframe-template.views.stats
+(ns questionnaire.views.stats
   (:require
-   [cljs-reframe-template.baz :refer [ddd]]
    [re-frame.core :as rf]
-   [cljs-reframe-template.use-cases.core-cases :as ccases]
+   [questionnaire.use-cases.core-cases :as ccases]
    [reagent.core :refer [with-let]]))
 
 (defn sorted-keys [k]
@@ -51,7 +50,6 @@
 
 
 (comment
-  (js->clj ddd :keywordize-keys true)
  (js->clj #js{"hello" 1} :keywordize-keys true))
   
   

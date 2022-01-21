@@ -1,4 +1,4 @@
-(ns cljs-reframe-template.routes
+(ns questionnaire.routes
   (:require
     [re-frame.core :as rf]
     [reitit.frontend :as rtf]
@@ -6,10 +6,10 @@
     [reitit.frontend.easy :as rtfe]
     [reitit.coercion.schema :as rsc]
     [tools.reframetools :refer [sdb gdb]]
-    [cljs-reframe-template.views.home :as home]
-    [cljs-reframe-template.views.compo :as compo]
-   [cljs-reframe-template.views.quiz :as compo2]
-   [cljs-reframe-template.views.stats :as stats]
+    [questionnaire.views.home :as home]
+    [questionnaire.views.compo :as compo]
+   [questionnaire.views.quiz :as compo2]
+   [questionnaire.views.stats :as stats]
    ))
 
 ;;https://clojure.org/guides/weird_characters#__code_code_var_quote

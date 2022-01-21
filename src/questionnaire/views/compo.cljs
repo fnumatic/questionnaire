@@ -1,6 +1,5 @@
-(ns cljs-reframe-template.views.compo
+(ns questionnaire.views.compo
   (:require
-   [cljs-reframe-template.baz :refer [ddd]]
    [clojure.walk :refer [keywordize-keys]]))
 
 (defn info [{:keys [title pools valid] :as data}]
@@ -91,18 +90,10 @@
     [:div
      {:class ["min-h-[220px]" "min-w-[300px]" :bg-red-50 :m-4 :p-2 "rounded-[5px]"]}
      [:h2.text-4xl "Component"]
-     [:div.flex.flex-col.space-y-3.p-2
-      [info (keywordize-keys ddd)]
-      [quest-edit (get-in (keywordize-keys ddd) [:pools 0 :chapters 0 :tasks 0])]
-      [quest-show (get-in (keywordize-keys ddd) [:pools 0 :chapters 0 :tasks 0])]
-      [quest-widget (get-in (keywordize-keys ddd) [:pools 0 :chapters 0  ])]]])
-      
-
-
+     ])
 
 
 (comment
-  (js->clj ddd :keywordize-keys true)
  (js->clj #js{"hello" 1} :keywordize-keys true))
   
   

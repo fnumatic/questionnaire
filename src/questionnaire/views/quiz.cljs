@@ -1,8 +1,7 @@
-(ns cljs-reframe-template.views.quiz
+(ns questionnaire.views.quiz
   (:require
-   [cljs-reframe-template.baz :refer [ddd]]
    [re-frame.core :as rf]
-   [cljs-reframe-template.use-cases.core-cases :as ccases]
+   [questionnaire.use-cases.core-cases :as ccases]
    [reagent.ratom :as ratom]
    [reagent.core :refer [with-let]]))
 
@@ -63,7 +62,6 @@
 
 
 (comment
-  (js->clj ddd :keywordize-keys true)
  (js->clj #js{"hello" 1} :keywordize-keys true))
   
   

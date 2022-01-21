@@ -1,4 +1,4 @@
-(ns cljs-reframe-template.db)
+(ns questionnaire.db)
 
 (def default-db
   {:name "re-frame"})

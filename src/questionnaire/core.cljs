@@ -1,12 +1,12 @@
-(ns ^:figwheel-hooks cljs-reframe-template.core
+(ns ^:figwheel-hooks questionnaire.core
   (:require
    [reagent.dom :refer [render]]
    [re-frame.core :as rf]
-   [cljs-reframe-template.use-cases.core-cases :as ccases]
-   [cljs-reframe-template.routes :as routes]
-   [cljs-reframe-template.views.home :as views]
-   [cljs-reframe-template.config :as config]
-   [cljs-reframe-template.styles :as styl]))
+   [questionnaire.use-cases.core-cases :as ccases]
+   [questionnaire.routes :as routes]
+   [questionnaire.views.home :as views]
+   [questionnaire.config :as config]
+   [questionnaire.styles :as styl]))
 
 
 

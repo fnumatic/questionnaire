@@ -1,4 +1,4 @@
-(ns cljs-reframe-template.styles
+(ns questionnaire.styles
   (:require
       [goog.dom :as gdom]
       ))

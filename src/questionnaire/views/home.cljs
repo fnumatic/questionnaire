@@ -1,7 +1,7 @@
-(ns cljs-reframe-template.views.home
+(ns questionnaire.views.home
   (:require
     [re-frame.core :as rf]
-    [cljs-reframe-template.use-cases.core-cases :as ccases]
+    [questionnaire.use-cases.core-cases :as ccases]
     [tools.viewtools :as vt]
     [cljs.pprint :as pp]))
     
