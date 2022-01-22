@@ -49,13 +49,13 @@
      (-> db
         (assoc-in [:answers quest-path] answer)
         (assoc-in [:current-quest-idx] idx))
-     :fx [(when (= :finished (game-state idx)) [:dispatch [:routes/navigate :routes/stats]])]}))
+     :fx [(when (= :finished (game-state idx)) [:dispatch [:routes/navigate :routes/#stats]])]}))
 
 (defn start-quizz [{:keys [db]}]
   {:db (-> db
            (assoc :answers nil)
            (assoc :current-quest-idx 0))
-   :fx [[:dispatch [:routes/navigate :routes/quiz]]]})
+   :fx [[:dispatch [:routes/navigate :routes/#quiz]]]})
 
 (defn set-quiz [{:keys [db]} [quiz]]
   (let [p (gen-paths (get quiz "quiz"))]
@@ -64,7 +64,7 @@
         (assoc :quiz quiz)
         (assoc :paths p)
         (assoc :current-quest-idx 0))
-     :fx [[:dispatch [:routes/navigate :routes/frontpage]]]}))
+     :fx [[:dispatch [:routes/navigate :routes/#frontpage]]]}))
   
 (defn get-question [[id quiz]]
   (-> (get-in quiz id)
@@ -160,5 +160,4 @@
    '(-> {:c 1} :c (->> #(inc-max 2 nil %))))
   (name :a)
   
-  (when (= :finished :finished) [:routes/navigate :routes/stats])
   ,)

@@ -42,7 +42,7 @@
      [stats @statsdata]]
      [:div.flex.justify-center
       [:button.h-20.w-40.bg-green-700.rounded-md.text-4xl.font-semibold.text-gray-700.border.shadow-md
-       {:on-click #(rf/dispatch [:routes/navigate :routes/frontpage])}
+       {:on-click #(rf/dispatch [:routes/navigate :routes/#frontpage])}
        "Back"]]
     ]))
      ;[quizz-meta (keywordize-keys @meta)]

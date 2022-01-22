@@ -31,9 +31,9 @@
 
 (def toolbar-items
   [
-   ["#" :routes/frontpage]
-   ["quizz" :routes/quiz]
-   ["stats" :routes/stats]])
+   ["#" :routes/#frontpage]
+   ["quizz" :routes/#quiz]
+   ["stats" :routes/#stats]])
 
 (defn route-info [route]
   [:div.m-4

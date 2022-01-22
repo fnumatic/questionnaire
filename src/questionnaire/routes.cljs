@@ -1,14 +1,12 @@
 (ns questionnaire.routes
   (:require
-    [re-frame.core :as rf]
-    [reitit.frontend :as rtf]
-    [reitit.frontend.history :as rtfh]
-    [reitit.frontend.easy :as rtfe]
-    [reitit.coercion.schema :as rsc]
-    [tools.reframetools :refer [sdb gdb]]
-    [questionnaire.views.home :as home]
-    [questionnaire.views.compo :as compo]
-   [questionnaire.views.quiz :as compo2]
+   [re-frame.core :as rf]
+   [reitit.frontend :as rtf]
+   [reitit.frontend.easy :as rtfe]
+   [reitit.coercion.schema :as rsc]
+   [tools.reframetools :refer [sdb gdb]]
+   [questionnaire.views.home :as home]
+   [questionnaire.views.quiz :as quiz]
    [questionnaire.views.stats :as stats]
    ))
 
@@ -17,14 +15,13 @@
     (rtf/router
       ["/"
        [""
-        {:name :routes/frontpage
+        {:name :routes/#frontpage
          :view #'home/main}]
-       
        ["quiz"
-        {:name :routes/quiz
-         :view #'compo2/main}]
+        {:name :routes/#quiz
+         :view #'quiz/main}]
        ["stats"
-        {:name :routes/stats
+        {:name :routes/#stats
          :view #'stats/main}]]
 
       {:data {:coercion rsc/coercion}}))
@@ -34,7 +31,6 @@
     (rf/dispatch [:routes/navigated new-match])))
 
 (defn app-routes []
-
   (rtfe/start! routes
                on-navigate
                {:use-fragment true}))
@@ -52,11 +48,7 @@
 (rf/reg-event-fx
  :routes/navigate
  (fn [_cofx [_ & route]]
-   (println {:navigate! route})
    {:routes/navigate! route}))
-
-
-
 
 (rf/reg-fx
  :routes/navigate!
