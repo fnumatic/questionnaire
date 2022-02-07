@@ -32,17 +32,15 @@
         [:div.table-cell [sorted-keys a]]])]]])
 
 (defn main []
-  (let [meta (rf/subscribe [::ccases/meta])
-        game-state (rf/subscribe [::ccases/game-state])
+  (let [
         statsdata (rf/subscribe  [::ccases/stats])]
-    (println :main @game-state)
    [:div
     {:class ["h-full" "min-w-[300px]" :bg-gray-200  :p-2 "rounded-[5px]"]}
     [:div.flex.flex-col.space-y-3
      [stats @statsdata]]
      [:div.flex.justify-center
       [:button.h-20.w-40.bg-green-700.rounded-md.text-4xl.font-semibold.text-gray-700.border.shadow-md
-       {:on-click #(rf/dispatch [:routes/navigate :routes/#frontpage])}
+       {:on-click #(rf/dispatch [:command/restart!])}
        "Back"]]
     ]))
      ;[quizz-meta (keywordize-keys @meta)]

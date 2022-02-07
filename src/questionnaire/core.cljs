@@ -30,5 +30,6 @@
   (rf/dispatch-sync [::ccases/initialize-db])
   (dev-setup)
   (routes/app-routes)
-  (rf/dispatch [::ccases/fetchdemo!])
+  ;;(rf/dispatch [::ccases/fetchdemo!])
+  (rf/dispatch [:command/start-app!])
   (mount-root))

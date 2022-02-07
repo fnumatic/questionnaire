@@ -13,3 +13,6 @@
 
 (defn target-checked [evt]
   (-> evt .-target .-checked))
+
+(defn nop [db [_ ]] db)
+(def nopfx (constantly {}))

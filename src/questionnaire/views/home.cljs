@@ -3,7 +3,8 @@
     [re-frame.core :as rf]
     [questionnaire.use-cases.core-cases :as ccases]
     [tools.viewtools :as vt]
-    [cljs.pprint :as pp]))
+    [cljs.pprint :as pp]
+    [questionnaire.views.notifications :refer [notifications-view]]))
     
 
 (defn quizz-meta [{:keys [title author licence homepage contributors] :as meta}]
@@ -53,4 +54,5 @@
   (let [active-route (rf/subscribe [:routes/current-route])]
     [:div.w-screen.h-screen.p-4.bg-gray-50
      ;[vt/navigation toolbar-items]
-     [show-panel @active-route]]))
+     [show-panel @active-route]
+     [notifications-view]]))
