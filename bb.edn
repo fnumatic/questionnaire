@@ -2,19 +2,34 @@
  :min-bb-version "0.3.6"
  :tasks
  {
+  
   watch {:task (shell "npx shadow-cljs watch app")}
   compile {:task (shell "npx shadow-cljs compile app")}
-  release {:task (shell "npx shadow-cljs release app")}
+  release {:doc "Release into local doc folder"
+           :depends [z-clean]
+           :requires ([babashka.fs :as fs])
+           :task (do
+                   (shell "npx shadow-cljs release app")
+                   (fs/copy-tree "resources/public/" "docs/" {:replace-existing true}))}
+  
   ;;updates
   update-npm {:task (shell "npx npm-check-updates -u")}
   update-deps {:task (shell "clojure -Moutdated --upgrade")}
- ;;tailwind 
+ 
+  ;;tailwind 
   purgecss {:task (shell "npm run-script tw")}
- ;;shadow report
-  buildreport {:task (let [date (java.time.LocalDateTime/now)
-                           formatter (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd")
+  
+  ;;shadow report
+  buildreport {:doc "Generate report for release builds"
+               :task (let [date (java.time.LocalDateTime/now)
+                           formatter (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd_HH-mm")
                            file (str "buildreport_" (.format date formatter) ".html")]
                        (shell (str "npx shadow-cljs run shadow.cljs.build-report app " file)))}
+ 
+  z-clean {:doc "Clean"
+           :requires ([babashka.fs :as fs])
+           :task (do (fs/delete-tree "resources/public/js")
+                     nil)}
 
   ,}}
  
