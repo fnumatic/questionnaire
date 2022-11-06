@@ -1,12 +1,13 @@
 (ns ^:figwheel-hooks questionnaire.core
-  (:require
-   [reagent.dom :refer [render]]
-   [re-frame.core :as rf]
-   [questionnaire.use-cases.core-cases :as ccases]
-   [questionnaire.routes :as routes]
-   [questionnaire.views.home :as views]
-   [questionnaire.config :as config]
-   [questionnaire.styles :as styl]))
+  (:require ["react-dom/client" :refer [createRoot]]
+            [goog.dom :as gdom]
+            [questionnaire.config :as config]
+            [questionnaire.routes :as routes]
+            [questionnaire.styles :as styl]
+            [questionnaire.use-cases.core-cases :as ccases]
+            [questionnaire.views.home :as views]
+            [re-frame.core :as rf]
+            [reagent.core :as r]))
 
 
 
@@ -15,12 +16,13 @@
     (enable-console-print!)
     (println "dev mode")))
 
+(defonce root (createRoot (gdom/getElement "app")))
+
 (defn mount-root []
   (println "mount")
   (rf/clear-subscription-cache!)
   (styl/inject-trace-styles js/document)
-  (render [views/main-panel]
-          (.getElementById js/document "app")))
+  (.render root (r/as-element [views/main-panel])))
 
 (defn ^:after-load re-render []
   (mount-root))
