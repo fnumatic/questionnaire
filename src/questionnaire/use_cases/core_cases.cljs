@@ -80,7 +80,7 @@
      :rightcount (count (filter true? aa_r))
      :answers a_r}))
 
-(defn quizz-finished? [{:keys [quest-idx]} ]
+(defn quizz-finished? [{:keys [quest-idx]}]
   (second quest-idx))
 
 (def  alert-loading 
@@ -97,6 +97,7 @@
 (def loading-machine
   {:initial :loading
    :states  {:loading {:entry  [(state/dispatch alert-loading)
+                                #(rf/dispatch [:routes/navigate :routes/#frontpage {} {:file "foobar.json"}])
                                 (state/dispatch [:command/fetch-quizz!])]
                        :exit (state/dispatch [:alert/delete-notification :loading-quizz]) 
                        :on {:error   :error
@@ -109,21 +110,21 @@
    {:initial :app-start
     :id      :quizz
     :states
-    {:app-start {:entry [fire-cameras]
-                 :after [{:delay 1000 :target :load}]
-                 :on {:load :load}}
-     :load         loading-machine
-     :quizz-prepped {:entry [(state/dispatch [:routes/navigate :routes/#frontpage])]
+    {:app-start     {:entry [fire-cameras]
+                     :after [{:delay 1000 :target :load}]
+                     :on {:load :load}}
+     :load          loading-machine
+     :quizz-prepped {:entry [#(rf/dispatch [:routes/navigate :routes/#frontpage])]
                      :on    {:start {:target  :question
                                      :actions [(state/dispatch [:command/set-quizz-idx [0 false]])
-                                               (state/dispatch [:routes/navigate :routes/#quiz])]}}}
+                                               #(rf/dispatch [:routes/navigate :routes/#quiz])]}}}
 
      :question      {:on    {:next-question [{:target :finished
                                               :guard  quizz-finished?}
                                              {:target :question
                                               :actions (state/dispatch [:command/inc-idx])}]
                              :finish        :finished}}
-     :finished      {:entry [(state/dispatch [:routes/navigate :routes/#stats])]
+     :finished      {:entry [#(rf/dispatch [:routes/navigate :routes/#stats])]
                      :on    {:restart {:target :quizz-prepped}}}}}))
 
 (rf/reg-sub ::meta (comp keywordize-keys (gdb [:quiz "meta"])))
