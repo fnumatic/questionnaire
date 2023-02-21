@@ -16,3 +16,4 @@ package-lock.json
 /.calva
 /.vscode
 /resources/public/app.css
+buildreport_*.html
