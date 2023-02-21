@@ -7,7 +7,9 @@
             [questionnaire.use-cases.core-cases :as ccases]
             [questionnaire.views.home :as views]
             [re-frame.core :as rf]
-            [reagent.core :as r]))
+            [react :as react]
+            [reagent.dom.client :as rdc]
+            ))
 
 
 
@@ -16,13 +18,12 @@
     (enable-console-print!)
     (println "dev mode")))
 
-(defonce root (createRoot (gdom/getElement "app")))
+(defonce root (rdc/create-root (gdom/getElement "app")))
 
 (defn mount-root []
-  (println "mount")
   (rf/clear-subscription-cache!)
   (styl/inject-trace-styles js/document)
-  (.render root (r/as-element [views/main-panel])))
+  (rdc/render root [:> react/StrictMode {} [#'views/main-panel]] ))
 
 (defn ^:after-load re-render []
   (mount-root))
